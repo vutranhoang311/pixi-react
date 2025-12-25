@@ -1,6 +1,6 @@
-import { extend } from '@pixi/react'
-import { Assets, Container, Sprite, Texture } from 'pixi.js'
+import { Assets, Texture } from 'pixi.js'
 import { useEffect, useState } from 'react'
+import bg from '../../../assets/background-xanh-1.jpg'
 interface MainContainerProps {
   canvasSize: {
     width: number
@@ -9,7 +9,6 @@ interface MainContainerProps {
   }
   children?: React.ReactNode
 }
-extend({ Container, Sprite })
 
 export const MainContainer = ({ canvasSize, children }: MainContainerProps) => {
   const [bgTexture, setBgTexture] = useState<Texture>(Texture.EMPTY)
@@ -18,18 +17,21 @@ export const MainContainer = ({ canvasSize, children }: MainContainerProps) => {
     if (bgTexture === Texture.EMPTY) {
       Assets.load({
         alias: 'bg',
-        src: 'https://picsum.photos/200/300.jpg',
+        src: bg,
         format: 'image',
       }).then((texture) => {
-        console.log(texture)
         setBgTexture(texture)
       })
     }
   }, [bgTexture])
 
   return (
-    <pixiContainer>
-      <pixiSprite texture={bgTexture} width={canvasSize.width} height={canvasSize.height}/>
+    <pixiContainer width={canvasSize.width} height={canvasSize.height}>
+      <pixiSprite
+        texture={bgTexture}
+        width={canvasSize.width}
+        height={canvasSize.height}
+      />
       {children}
     </pixiContainer>
   )

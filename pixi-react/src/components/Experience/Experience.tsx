@@ -11,12 +11,14 @@ export const Experience = () => {
 
   const handleResize = useCallback(() => {
     setCanvasSize(calculateCanvasSize())
-  }, [setCanvasSize])
+  }, [])
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [handleResize])
+
+  console.log(canvasSize)
 
   return (
     <Application width={canvasSize.width} height={canvasSize.height}>
