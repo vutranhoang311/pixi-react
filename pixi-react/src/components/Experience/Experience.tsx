@@ -21,7 +21,11 @@ export const Experience = () => {
   console.log(canvasSize)
 
   return (
-    <Application width={canvasSize.width} height={canvasSize.height}>
+    <Application
+      background={'#1099bb'}
+      width={canvasSize.width}
+      height={canvasSize.height}
+    >
       <MainContainer canvasSize={canvasSize} />
     </Application>
   )
